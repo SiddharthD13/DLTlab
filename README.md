@@ -75,3 +75,47 @@ contract MyToken {
     }
 }
 ```
+### Exp-4 Basic Functions in Solidity
+```
+pragma solidity ^0.8.0;
+
+contract BasicFunctions {
+    uint256 public myNumber;
+    string public myString;
+    bool public myBoolean;
+    address public myAddress;
+    mapping(address => uint256) public myMapping;
+    uint256[] public myArray;
+    
+    constructor() {
+        myNumber = 0;
+        myString = "";
+        myBoolean = false;
+        myAddress = address(0);
+    }
+    
+    function setNumber(uint256 _number) public {
+        myNumber = _number;
+    }
+    
+    function setString(string memory _string) public {
+        myString = _string;
+    }
+    
+    function setBoolean(bool _boolean) public {
+        myBoolean = _boolean;
+    }
+    
+    function setAddress(address _address) public {
+        myAddress = _address;
+    }
+    
+    function addToMapping(address _address, uint256 _value) public {
+        myMapping[_address] = _value;
+    }
+    
+    function addToArray(uint256 _value) public {
+        myArray.push(_value);
+    }
+}
+```
