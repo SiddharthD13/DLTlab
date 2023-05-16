@@ -119,3 +119,103 @@ contract BasicFunctions {
     }
 }
 ```
+### Exp-6 Inheritance 
+```
+pragma solidity ^0.8.0;
+
+contract Parent {
+    uint256 public parentVariable;
+    
+    function modifyParentVariable(uint256 _value) public {
+        parentVariable = _value;
+    }
+}
+
+contract Child is Parent {
+    uint256 public childVariable;
+    
+    function modifyParentVariable(uint256 _value) public override {
+        childVariable = _value;
+    }
+}
+```
+
+### Exp-9 Different Data Locations
+
+```
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.5.0 <0.9.0;
+
+contract DataLocations {
+    uint256 public storageVariable; // Stored in storage
+    
+    function setStorage(uint256 _value) public {
+        storageVariable = _value;
+    }
+    
+    function getStorage() public view returns (uint256) {
+        return storageVariable;
+    }
+    
+    function sum(uint256 a, uint256 b) public pure returns (uint256) {
+        uint256 result = a + b; // Stored in memory
+        return result;
+    }
+    
+    function concatenate(string calldata _str1, string calldata _str2) public pure returns (string memory) {
+        bytes memory str1Bytes = bytes(_str1); // Stored in calldata
+        bytes memory str2Bytes = bytes(_str2); // Stored in calldata
+        
+        string memory concatenated = new string(str1Bytes.length + str2Bytes.length);
+        bytes memory concatenatedBytes = bytes(concatenated);
+        
+        uint256 k = 0;
+        for (uint256 i = 0; i < str1Bytes.length; i++) {
+            concatenatedBytes[k++] = str1Bytes[i];
+        }
+        for (uint256 i = 0; i < str2Bytes.length; i++) {
+            concatenatedBytes[k++] = str2Bytes[i];
+        }
+        
+        return string(concatenatedBytes);
+    }
+}
+```
+
+### Lab-10 Supply Chain Management 
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract SupplyManagementSystem {
+    struct Product {
+        uint256 quantity;
+        bool exists;
+    }
+    
+    mapping(uint256 => Product) public products;
+    
+    function addProduct(uint256 _productId, uint256 _quantity) public {
+        require(!products[_productId].exists, "Product already exists");
+        
+        Product memory newProduct = Product({
+            quantity: _quantity,
+            exists: true
+        });
+        
+        products[_productId] = newProduct;
+    }
+    
+    function updateProductQuantity(uint256 _productId, uint256 _newQuantity) public {
+        require(products[_productId].exists, "Product does not exist");
+        
+        products[_productId].quantity = _newQuantity;
+    }
+    
+    function getProductQuantity(uint256 _productId) public view returns (uint256) {
+        require(products[_productId].exists, "Product does not exist");
+        
+        return products[_productId].quantity;
+    }
+}
+```
