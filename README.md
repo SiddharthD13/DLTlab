@@ -20,6 +20,15 @@ contract MyContract {
 ```
 
 ### Exp-3 DAPP in Solidity
+``` 
+sample input
+name = "My Token";
+  const symbol = "MTK";
+  const decimals = 18;
+  const initialSupply = 1000000;
+```
+
+
 ```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
