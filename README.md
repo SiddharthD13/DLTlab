@@ -131,25 +131,22 @@ contract BasicFunctions {
 ### Exp-6 Inheritance 
 ```
 // SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
+pragma solidity >=0.5.0 <0.9.0;
 
 contract Parent {
-    uint256 public parentVariable;
-    
-    function modifyParentVariable(uint256 _value) public virtual {
-        parentVariable = _value;
+    int256 public a;
+
+    function increment() public {
+        a = a + 1;
     }
 }
 
 contract Child is Parent {
-    uint256 public childVariable;
-    
-    function modifyParentVariable(uint256 _value) public override {
-        super.modifyParentVariable(_value);  // Call parent's function
-        childVariable = _value;
+    function decrement() public {
+        a = a - 1;
     }
 }
+
 ```
 ### Exp-8 Merkle Tree
 ```
