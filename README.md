@@ -128,7 +128,7 @@ contract BasicFunctions {
     }
 }
 ```
-### Exp-6 Inheritance 
+### Exp-6 Inheritance 1
 ```
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.5.0 <0.9.0;
@@ -148,6 +148,29 @@ contract Child is Parent {
 }
 
 ```
+### Exp-6 Inheritance 2
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Parent {
+    uint256 public parentVariable;
+    
+    function modifyParentVariable(uint256 _value) public virtual {
+        parentVariable = _value;
+    }
+}
+
+contract Child is Parent {
+    uint256 public childVariable;
+    
+    function modifyParentVariable(uint256 _value) public override {
+        super.modifyParentVariable(_value);  // Call parent's function
+        childVariable = _value;
+    }
+}
+```
+
 ### Exp-8 Merkle Tree
 ```
 // SPDX-License-Identifier: UNLICENSED
