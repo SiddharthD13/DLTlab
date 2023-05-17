@@ -150,6 +150,7 @@ contract Child is Parent {
 ```
 ### Exp-8 Merkle Tree
 ```
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
 contract MerkleTree {
@@ -162,14 +163,12 @@ contract MerkleTree {
     }
 
     function generateRoot(bytes32[] memory leaves) private pure returns (bytes32) {
-        require(isPowerOfTwo(leaves.length), "Number of leaves must be a power of 2");
-
-        bytes32[] memory nodes = new bytes32[](leaves.length * 2);
+        bytes32[] memory nodes = new bytes32[](12);
         for (uint256 i = 0; i < leaves.length; i++) {
-            nodes[i + leaves.length] = leaves[i];
+            nodes[i + 6] = leaves[i];
         }
 
-        for (uint256 i = leaves.length - 1; i > 0; i--) {
+        for (uint256 i = 5; i > 0; i--) {
             nodes[i] = hash(nodes[i * 2] ^ nodes[i * 2 + 1]);
         }
 
@@ -180,14 +179,13 @@ contract MerkleTree {
         return sha256(abi.encodePacked(data));
     }
 
-    function isPowerOfTwo(uint256 n) private pure returns (bool) {
-        return (n & (n - 1)) == 0;
-    }
-
     function getRoot() public view returns (bytes32) {
         return root;
     }
 }
+
+
+Input to be put next to deploy button in remix: [     "0x1111111111111111111111111111111111111111111111111111111111111111",     "0x2222222222222222222222222222222222222222222222222222222222222222",     "0x3333333333333333333333333333333333333333333333333333333333333333",     "0x4444444444444444444444444444444444444444444444444444444444444444",     "0x5555555555555555555555555555555555555555555555555555555555555555",     "0x6666666666666666666666666666666666666666666666666666666666666666"   ]
 ```
 
 ### Exp-9 Different Data Locations
