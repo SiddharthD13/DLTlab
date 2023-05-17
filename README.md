@@ -148,6 +148,47 @@ contract Child is Parent {
     }
 }
 ```
+### Exp-8 Merkle Tree
+```
+pragma solidity ^0.8.0;
+
+contract MerkleTree {
+    bytes32 private root;
+
+    constructor(bytes32[] memory leaves) {
+        require(leaves.length == 6, "Invalid number of leaves");
+
+        root = generateRoot(leaves);
+    }
+
+    function generateRoot(bytes32[] memory leaves) private pure returns (bytes32) {
+        require(isPowerOfTwo(leaves.length), "Number of leaves must be a power of 2");
+
+        bytes32[] memory nodes = new bytes32[](leaves.length * 2);
+        for (uint256 i = 0; i < leaves.length; i++) {
+            nodes[i + leaves.length] = leaves[i];
+        }
+
+        for (uint256 i = leaves.length - 1; i > 0; i--) {
+            nodes[i] = hash(nodes[i * 2] ^ nodes[i * 2 + 1]);
+        }
+
+        return nodes[1];
+    }
+
+    function hash(bytes32 data) private pure returns (bytes32) {
+        return sha256(abi.encodePacked(data));
+    }
+
+    function isPowerOfTwo(uint256 n) private pure returns (bool) {
+        return (n & (n - 1)) == 0;
+    }
+
+    function getRoot() public view returns (bytes32) {
+        return root;
+    }
+}
+```
 
 ### Exp-9 Different Data Locations
 
