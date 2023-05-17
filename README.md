@@ -130,12 +130,14 @@ contract BasicFunctions {
 ```
 ### Exp-6 Inheritance 
 ```
+// SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.0;
 
 contract Parent {
     uint256 public parentVariable;
     
-    function modifyParentVariable(uint256 _value) public {
+    function modifyParentVariable(uint256 _value) public virtual {
         parentVariable = _value;
     }
 }
@@ -144,6 +146,7 @@ contract Child is Parent {
     uint256 public childVariable;
     
     function modifyParentVariable(uint256 _value) public override {
+        super.modifyParentVariable(_value);  // Call parent's function
         childVariable = _value;
     }
 }
