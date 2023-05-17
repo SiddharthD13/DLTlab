@@ -426,3 +426,32 @@ while blockchain.head != None:
     print(blockchain.head)
     blockchain.head = blockchain.head.next
  ```
+ 
+ 
+ ### Exp-7 Creation of hyperledger
+ 
+ ```
+1. Visit:
+version.https://hyperledger-fabric.readthedocs.io/en/release-2.3/install.html#installingthe-latest-release
+ 
+2. In IDE clone: command – git clone
+https://github.com/hyperledger/fabric-samples
+
+3. Change the directory to test-network so as to get the access of switching the network on and
+off. Command – cd test-network
+4. mkdir chaincode.
+5. Open the new network : Command - /.network.sh up
+6. Stop network: : Command -
+/.network.sh down
+
+OUTPUT:
+PS C:\Users\Asus\Desktop\Distributed Ledger\fabric-samples> cd .\test-network\
+PS C:\Users\Asus\Desktop\Distributed Ledger\fabric-samples\test-network> ./network.sh up
+PS C:\Users\Asus\Desktop\Distributed Ledger\fabric-samples\test-network>
+[main 2023-03-16T04:00:57.747Z] update#setState idle [main 2023-03-16T04:01:00.392Z]
+[UtilityProcess id: 1, type: extensionHost, pid: <none>]: creating new...
+36
+[main 2023-03-16T04:01:00.458Z] [UtilityProcess id: 1, type: extensionHost, pid: 10616]:
+successfully created
+```
+
